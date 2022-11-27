@@ -1,0 +1,57 @@
+local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/Robojini/Tuturial_UI_Library/main/UI_Template_1"))()
+local Window = Library.CreateLib("SAO#0059 SCRIPTS", "RJTheme3")
+local Tab = Window:NewTab("Ro Fruit")
+local Section = Tab:NewSection("Auto Skill for DMK")
+Section:NewToggle("Z and X", "", function(state)
+    if state then
+        getgenv().farmer = true;
+
+        while wait() do 
+            if getgenv().farmer == true then
+            local Event = game:GetService("ReplicatedStorage").Document["_Sword"].DualMysteryKatana.DualMysteryKatanaEvent
+            Event:FireServer()
+            local Event = game:GetService("ReplicatedStorage").Document["_Sword"].DualMysteryKatana.DualMysteryKatanaEvent2
+            Event:FireServer()
+
+            end
+        end
+    else
+        getgenv().farmer = false;
+
+        while wait() do 
+            if getgenv().farmer == true then
+            local Event = game:GetService("ReplicatedStorage").Document["_Sword"].DualMysteryKatana.DualMysteryKatanaEvent
+            Event:FireServer()
+            local Event = game:GetService("ReplicatedStorage").Document["_Sword"].DualMysteryKatana.DualMysteryKatanaEvent2
+            Event:FireServer()
+
+            end
+        end
+    end
+end)
+local Section = Tab:NewSection("Teleport Ctrl + Click")
+Section:NewButton("Teleport", "", function()
+    local UIS = game:GetService("UserInputService")
+
+local Player = game.Players.LocalPlayer
+local Mouse = Player:GetMouse()
+
+
+function GetCharacter()
+   return game.Players.LocalPlayer.Character
+end
+
+function Teleport(pos)
+   local Char = GetCharacter()
+   if Char then
+       Char:MoveTo(pos)
+   end
+end
+
+
+UIS.InputBegan:Connect(function(input)
+   if input.UserInputType == Enum.UserInputType.MouseButton1 and UIS:IsKeyDown(Enum.KeyCode.LeftControl) then
+       Teleport(Mouse.Hit.p)
+   end
+end)
+end)
